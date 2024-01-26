@@ -32,7 +32,8 @@ it easy to define classes that construct Perl objects that correspond to
 the JSON objects.
 
 The intention is that these Perl objects can easily be loaded from,
-and serialized as JSON.
+and serialized as JSON. However, they are useful for data classs too,
+even without the JSON.
 
 For example:
 
