@@ -9,9 +9,9 @@ use utf8;
 
 # Author          : Johan Vromans
 # Created On      : Thu Jan 25 19:14:38 2024
-# Last Modified By: 
-# Last Modified On: Fri Jan 26 14:12:43 2024
-# Update Count    : 123
+# Last Modified By: Johan Vromans
+# Last Modified On: Wed May  6 20:34:36 2026
+# Update Count    : 127
 # Status          : Unknown, Use with caution!
 
 ################ Common stuff ################
@@ -151,34 +151,38 @@ sub generate( $data, $pfx ) {
     $class->seen++;
 
     for my $field ( sort keys %$data ) {
-	my $f;
-	my $v = $data->{$field};
+	$field  =~ s/-/_/g;
+	for ( split(/,\s*/, $field) ) {
+	    my $field = $_;
+	    my $f;
+	    my $v = $data->{$field};
 
-	# ARRAY.
-	if ( ref($v) eq 'ARRAY' ) {
-	    $f = Field->new( name => "\@$field" );
-	    for ( my $i = 0; $i < @$v; $i++ ) {
-		my $v = $v->[$i];
-		if ( ref($v) eq 'HASH' ) {
-		    my $pfx = $pfx . "_" . $field;
-		    $f->type = $pfx;
-		    generate( $v, $pfx );
+	    # ARRAY.
+	    if ( ref($v) eq 'ARRAY' ) {
+		$f = Field->new( name => "\@$field" );
+		for ( my $i = 0; $i < @$v; $i++ ) {
+		    my $v = $v->[$i];
+		    if ( ref($v) eq 'HASH' ) {
+			my $pfx = $pfx . "_" . $field;
+			$f->type = $pfx;
+			generate( $v, $pfx );
+		    }
 		}
 	    }
-	}
 
-	# HASH -> Object.
-	elsif ( ref($v) eq 'HASH' ) {
-	    my $pfx = $pfx . "_" . $field;
-	    $f = Field->new( name => "\$$field", type => $pfx );
-	    generate( $v, $pfx );
-	}
+	    # HASH -> Object.
+	    elsif ( ref($v) eq 'HASH' ) {
+		my $pfx = $pfx . "_" . $field;
+		$f = Field->new( name => "\$$field", type => $pfx );
+		generate( $v, $pfx );
+	    }
 
-	# Scalar field.
-	else {
-	    $f = Field->new( name => "\$$field" );
+	    # Scalar field.
+	    else {
+		$f = Field->new( name => "\$$field" );
+	    }
+	    $class->add_field($f);
 	}
-	$class->add_field($f);
     }
 
 }
