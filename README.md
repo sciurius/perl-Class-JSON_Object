@@ -1,8 +1,8 @@
 # Class::JSON_Object
 
-![Version](https://img.shields.io/github/v/release/sciurius//perl-Class-JSON_Object)
-![GitHub issues](https://img.shields.io/github/issues/sciurius//perl-Class-JSON_Object)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+![Version](https://img.shields.io/github/v/release/sciurius/perl-Class-JSON_Object)
+![GitHub issues](https://img.shields.io/github/issues/sciurius/perl-Class-JSON_Object)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http:/makeapullrequest.com)
 ![Language Perl](https://img.shields.io/badge/Language-Perl-blue)
 
 Many web services and apps exchange information in the form of
