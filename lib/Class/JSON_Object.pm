@@ -210,11 +210,11 @@ method _load_data( $data, $sparse ) {
 	    if ( $class ) {	# Object
 		# Check for array of objects.
 		if ( ref($v->{ref}) eq 'ARRAY' && ref($val) eq 'ARRAY' ) {
-		    @{$v->{ref}} = map { $class->new->load($_) } @$val;
+		    @{$v->{ref}} = map { $class->new->_load_data($_,$sparse) } @$val;
 		}
 		else {
 		    # Single object.
-		    ${$v->{ref}} = $class->new->load($val);
+		    ${$v->{ref}} = $class->new->_load_data($val,$sparse);
 		}
 	    }
 
