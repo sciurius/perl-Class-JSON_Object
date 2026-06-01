@@ -8,7 +8,7 @@ use utf8;
 # For stupis VERSION scanners...
 package Class::JSON_Object;
 
-our $VERSION = "0.04";
+our $VERSION = 0.05;
 
 =head1 NAME
 
