@@ -5,6 +5,11 @@ use warnings; # see https://metacpan.org/pod/Object::Pad#Implied-Pragmata
 use Object::Pad qw( :experimental(mop) :experimental(custom_field_attr) );
 use utf8;
 
+# For stupis VERSION scanners...
+package Class::JSON_Object;
+
+our $VERSION = "0.04";
+
 =head1 NAME
 
 Class::JSON_Object - Role for Class::JSON_Object
@@ -74,7 +79,6 @@ role Class::JSON_Object;
 
 use Object::Pad::MetaFunctions qw( deconstruct_object ref_field );
 
-our $VERSION = "0.02";
 use Carp;
 
 field $_json;			# JSON en/decoder
